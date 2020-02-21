@@ -7,12 +7,12 @@ public class ElevensSimulation {
 	/**
 	 * The number of games of Elevens to play.
 	 */
-	private static final int GAMES_TO_PLAY = 1;
+	private static final int GAMES_TO_PLAY = 300000;
 
 	/**
 	 * Flag used to control debugging print statements.
 	 */
-	private static final boolean I_AM_DEBUGGING = true;
+	private static final boolean I_AM_DEBUGGING = false;
 
 
 	/**
@@ -22,6 +22,7 @@ public class ElevensSimulation {
 		ElevensBoard board = new ElevensBoard();
 		int wins = 0;
 
+    
 		for (int k = 0; k < GAMES_TO_PLAY; k++) {
 			if (I_AM_DEBUGGING) {
 				System.out.println(board);

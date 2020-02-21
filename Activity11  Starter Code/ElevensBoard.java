@@ -88,8 +88,8 @@ public class ElevensBoard extends Board {
 			for (int sk2 = sk1 + 1; sk2 < selectedCards.size(); sk2++) {
 				int k2 = selectedCards.get(sk2).intValue();
 				if (cardAt(k1).pointValue() + cardAt(k2).pointValue() == 11) {
-					indexes.add(sk1);
-					indexes.add(sk2);
+					indexes.add(k1);
+					indexes.add(k2);
 					return indexes;
 				}
 			}
@@ -116,16 +116,16 @@ public class ElevensBoard extends Board {
 			if (cardAt(k).rank().equals("jack") && !foundJack) {
 				indexes.add(k);
 				foundJack = true;
-			} else if (cardAt(k).rank().equals("queen") && !foundKing) {
+			} else if (cardAt(k).rank().equals("queen") && !foundQueen) {
 				indexes.add(k);
 				foundQueen = true;
-			} else if (cardAt(k).rank().equals("king") && !foundQueen) {
+			} else if (cardAt(k).rank().equals("king") && !foundKing) {
 				indexes.add(k);
 				foundKing = true;
 			}
-			if (foundJack && foundQueen && foundQueen) return indexes;
+			if (foundJack && foundKing && foundQueen) return indexes;
 		}
-		return indexes;
+		return new ArrayList<Integer>();
 	}
 
 	/**
@@ -133,8 +133,13 @@ public class ElevensBoard extends Board {
 	 * @return true if a legal play was found (and made); false othewise.
 	 */
 	public boolean playIfPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 11 *** */
-		return playPairSum11IfPossible() || playJQKIfPossible();
+    /* *** TO BE IMPLEMENTED IN ACTIVITY 11 *** */
+    if (playPairSum11IfPossible()) {
+      return true;
+    } else if (playJQKIfPossible()) {
+      return true;
+    }
+    return false;
 	}
 
 	/**
@@ -145,10 +150,10 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean playPairSum11IfPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 11 *** */
-		ArrayList<Integer> indexes11 = findPairSum11(cardIndexes());
+    ArrayList<Integer> indexes11 = findPairSum11(cardIndexes());
 
-		if (indexes11.size() > 0) replaceSelectedCards(indexes11);
-
+    if (indexes11.size() > 0) replaceSelectedCards(indexes11);
+    
 		 return indexes11.size() > 0;
 	}
 
@@ -160,7 +165,7 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean playJQKIfPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 11 *** */
-		ArrayList<Integer> indexesJQK = findJQK(cardIndexes());
+    ArrayList<Integer> indexesJQK = findJQK(cardIndexes());
 
 		if (indexesJQK.size() > 0) replaceSelectedCards(indexesJQK);
 
